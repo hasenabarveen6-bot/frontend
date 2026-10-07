@@ -1,342 +1,710 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenCart - E-Commerce</title>
+    <title>CraveHouse | Premium Food Delivery</title>
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background: #f4faf6;
-            color: #183b2a;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #fffaf7;
+            color: #351714;
+            line-height: 1.6;
         }
 
-        /* NAVBAR */
-        .navbar {
-            background: #ffffff;
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        header {
+            background: #3b1111;
             padding: 18px 7%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 20px rgba(0, 80, 40, 0.08);
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 5px 25px rgba(50, 10, 10, 0.25);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #16834b;
+            color: #fff;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
         .logo span {
-            color: #183b2a;
+            color: #d7a36b;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 35px;
             list-style: none;
         }
 
         .nav-links a {
+            color: #fff;
             text-decoration: none;
-            color: #183b2a;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 500;
             transition: 0.3s;
         }
 
         .nav-links a:hover {
-            color: #16834b;
+            color: #d7a36b;
         }
 
-        .cart-btn {
-            background: #16834b;
-            color: white;
-            border: none;
-            padding: 11px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
+        .nav-btn {
+            background: #d7a36b;
+            color: #3b1111;
+            padding: 11px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
             transition: 0.3s;
         }
 
-        .cart-btn:hover {
-            background: #0d6338;
+        .nav-btn:hover {
+            background: #fff;
             transform: translateY(-2px);
         }
 
-        /* HERO */
+        /* =========================
+           HERO
+        ========================== */
+
         .hero {
-            min-height: 500px;
+            min-height: 650px;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(52, 13, 13, 0.97) 0%,
+                    rgba(66, 20, 16, 0.88) 45%,
+                    rgba(66, 20, 16, 0.25) 100%
+                ),
+                url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=85");
+
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 70px 7%;
-            background: linear-gradient(135deg, #e4f8eb, #ffffff);
+            padding: 80px 7%;
         }
 
         .hero-content {
-            max-width: 550px;
-        }
-
-        .hero-content h1 {
-            font-size: 52px;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero-content h1 span {
-            color: #16834b;
-        }
-
-        .hero-content p {
-            font-size: 18px;
-            color: #65756c;
-            line-height: 1.7;
-            margin-bottom: 30px;
-        }
-
-        .shop-btn {
-            display: inline-block;
-            text-decoration: none;
-            background: #16834b;
+            max-width: 650px;
             color: white;
+        }
+
+        .small-title {
+            color: #e0ad73;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 75px);
+            line-height: 1.05;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            color: #e0ad73;
+        }
+
+        .hero p {
+            color: #f5e7df;
+            max-width: 540px;
+            font-size: 17px;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn,
+        .secondary-btn {
             padding: 14px 28px;
             border-radius: 30px;
-            font-weight: bold;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
             transition: 0.3s;
         }
 
-        .shop-btn:hover {
-            background: #0d6338;
-            transform: scale(1.05);
+        .primary-btn {
+            background: #d7a36b;
+            color: #3b1111;
         }
 
-        .hero-image {
-            width: 400px;
-            height: 350px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #16834b, #79d99d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 130px;
-            box-shadow: 0 20px 50px rgba(22, 131, 75, 0.25);
+        .primary-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(215, 163, 107, 0.3);
         }
 
-        /* CATEGORIES */
-        .section {
-            padding: 70px 7%;
+        .secondary-btn {
+            border: 1px solid #fff;
+            color: white;
         }
 
-        .section-title {
+        .secondary-btn:hover {
+            background: white;
+            color: #3b1111;
+        }
+
+        /* =========================
+           COMMON SECTION
+        ========================== */
+
+        section {
+            padding: 90px 7%;
+        }
+
+        .section-heading {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
-        .section-title h2 {
-            font-size: 34px;
-            margin-bottom: 10px;
+        .section-heading small {
+            color: #9b4c3f;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .section-title p {
-            color: #718078;
+        .section-heading h2 {
+            font-size: 40px;
+            color: #3b1111;
+            margin-top: 8px;
         }
+
+        .section-heading p {
+            color: #806b65;
+            max-width: 600px;
+            margin: 10px auto;
+        }
+
+        /* =========================
+           CATEGORIES
+        ========================== */
 
         .categories {
+            background: #fff;
+        }
+
+        .category-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 18px;
         }
 
         .category {
-            background: white;
-            padding: 30px;
-            text-align: center;
+            background: #fffaf7;
+            border: 1px solid #eadbd2;
+            padding: 28px 15px;
             border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(0, 70, 40, 0.08);
+            text-align: center;
             transition: 0.3s;
             cursor: pointer;
         }
 
         .category:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(22, 131, 75, 0.18);
+            border-color: #9b4c3f;
+            box-shadow: 0 15px 30px rgba(76, 23, 17, 0.12);
         }
 
-        .category .icon {
-            font-size: 45px;
-            margin-bottom: 15px;
+        .category-icon {
+            width: 65px;
+            height: 65px;
+            margin: auto auto 15px;
+            border-radius: 50%;
+            background: #f3e2d5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
         }
 
         .category h3 {
-            margin-bottom: 8px;
+            font-size: 16px;
+            color: #421616;
         }
 
-        .category p {
-            color: #77847d;
+        /* =========================
+           POPULAR FOODS
+        ========================== */
+
+        .popular {
+            background: #f8eee8;
         }
 
-        /* PRODUCTS */
-        .products {
+        .food-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
         }
 
-        .product-card {
+        .food-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 22px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 70, 40, 0.08);
-            transition: 0.3s;
+            border: 1px solid #eadbd2;
+            transition: 0.35s;
+            position: relative;
         }
 
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 18px 40px rgba(22, 131, 75, 0.18);
+        .food-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(66, 20, 16, 0.15);
         }
 
-        .product-image {
+        .food-image {
             height: 220px;
-            background: #e8f7ed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 90px;
+            overflow: hidden;
+            position: relative;
         }
 
-        .product-info {
+        .food-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .food-card:hover .food-image img {
+            transform: scale(1.08);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #3b1111;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .food-info {
             padding: 20px;
         }
 
-        .product-info h3 {
-            margin-bottom: 8px;
+        .food-info h3 {
+            color: #3b1111;
+            margin-bottom: 5px;
         }
 
-        .product-info p {
-            color: #7a867f;
+        .food-info p {
+            color: #8a7771;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .rating {
+            color: #c88642;
             font-size: 14px;
             margin-bottom: 15px;
         }
 
-        .price {
-            color: #16834b;
-            font-size: 21px;
-            font-weight: bold;
-        }
-
-        .product-bottom {
+        .food-bottom {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
+        .price {
+            font-size: 20px;
+            color: #5b1b16;
+            font-weight: 800;
+        }
+
         .add-btn {
             border: none;
-            background: #e2f5e9;
-            color: #16834b;
+            background: #5b1b16;
+            color: white;
             padding: 9px 15px;
             border-radius: 20px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 700;
+            transition: 0.3s;
         }
 
         .add-btn:hover {
-            background: #16834b;
-            color: white;
+            background: #d7a36b;
+            color: #3b1111;
         }
 
-        /* OFFER */
+        /* =========================
+           OFFER
+        ========================== */
+
         .offer {
-            margin: 20px 7% 70px;
-            padding: 45px;
-            border-radius: 25px;
-            background: linear-gradient(120deg, #16834b, #3bbf76);
-            color: white;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(22, 131, 75, 0.25);
+            padding: 0 7% 90px;
+            background: #f8eee8;
         }
 
-        .offer h2 {
-            font-size: 34px;
+        .offer-box {
+            min-height: 300px;
+            border-radius: 30px;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(55, 13, 13, 0.97),
+                    rgba(75, 23, 17, 0.75)
+                ),
+                url("https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1400&q=85");
+
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 50px;
+            color: white;
+        }
+
+        .offer-content {
+            max-width: 600px;
+        }
+
+        .offer-content small {
+            color: #e1b27b;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .offer-content h2 {
+            font-size: 42px;
+            margin: 8px 0 12px;
+        }
+
+        .offer-content p {
+            color: #f5e6df;
+            margin-bottom: 22px;
+        }
+
+        /* =========================
+           WHY US
+        ========================== */
+
+        .why-us {
+            background: white;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature {
+            padding: 35px;
+            border-radius: 20px;
+            background: #fffaf7;
+            border: 1px solid #eadbd2;
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(55, 13, 13, 0.1);
+        }
+
+        .feature-number {
+            font-size: 14px;
+            color: #a85b4d;
+            font-weight: 800;
             margin-bottom: 12px;
         }
 
-        .offer p {
+        .feature h3 {
+            color: #3b1111;
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #806d66;
+            font-size: 14px;
+        }
+
+        /* =========================
+           TESTIMONIAL
+        ========================== */
+
+        .reviews {
+            background: #f8eee8;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .review {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #eadbd2;
+        }
+
+        .review-stars {
+            color: #c88642;
+            margin-bottom: 15px;
+        }
+
+        .review p {
+            color: #6f5e59;
+            font-size: 14px;
             margin-bottom: 20px;
         }
 
-        .offer-btn {
-            border: none;
-            background: white;
-            color: #16834b;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
+        .review-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        /* FOOTER */
-        footer {
-            background: #183b2a;
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #5b1b16;
             color: white;
-            padding: 45px 7%;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
         }
 
-        footer h2 {
+        .review-user h4 {
+            color: #3b1111;
+        }
+
+        .review-user span {
+            font-size: 12px;
+            color: #9b8982;
+        }
+
+        /* =========================
+           NEWSLETTER
+        ========================== */
+
+        .newsletter {
+            background: #3b1111;
+            text-align: center;
+            color: white;
+        }
+
+        .newsletter h2 {
+            font-size: 38px;
             margin-bottom: 10px;
         }
 
-        footer p {
-            color: #c8d8cf;
-            margin: 8px 0;
+        .newsletter p {
+            color: #e9d6ce;
+            margin-bottom: 25px;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
+        .subscribe {
+            max-width: 550px;
+            margin: auto;
+            display: flex;
+            background: white;
+            padding: 6px;
+            border-radius: 40px;
+        }
 
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                gap: 40px;
+        .subscribe input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 14px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+        }
+
+        .subscribe button {
+            border: none;
+            background: #d7a36b;
+            color: #3b1111;
+            padding: 13px 25px;
+            border-radius: 30px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #240b0b;
+            color: white;
+            padding: 55px 7% 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 35px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer h3 span {
+            color: #d7a36b;
+        }
+
+        footer p {
+            color: #c8b5ae;
+            font-size: 14px;
+            max-width: 350px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 9px;
+        }
+
+        footer a {
+            color: #c8b5ae;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: #d7a36b;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 22px;
+            text-align: center;
+            color: #9e8b84;
+            font-size: 13px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 1000px) {
+
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
 
-            .categories,
-            .products {
+            .food-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 16px 5%;
             }
 
             .nav-links {
                 display: none;
             }
-        }
 
-        @media (max-width: 550px) {
-
-            .hero-content h1 {
-                font-size: 38px;
+            .hero {
+                padding: 70px 6%;
+                min-height: 600px;
             }
 
-            .hero-image {
-                width: 280px;
-                height: 250px;
-                font-size: 90px;
+            .hero h1 {
+                font-size: 45px;
             }
 
-            .categories,
-            .products {
+            section {
+                padding: 65px 6%;
+            }
+
+            .section-heading h2 {
+                font-size: 32px;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .food-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .offer {
+                padding: 0 6% 65px;
+            }
+
+            .offer-box {
+                padding: 35px 25px;
+            }
+
+            .offer-content h2 {
+                font-size: 32px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subscribe {
+                flex-direction: column;
+                background: transparent;
+                gap: 10px;
+            }
+
+            .subscribe input,
+            .subscribe button {
+                width: 100%;
             }
         }
     </style>
@@ -344,93 +712,113 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
+    <!-- ================= NAVBAR ================= -->
 
-        <div class="logo">
-            Green<span>Cart</span>
-        </div>
+    <header>
+        <nav>
 
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#categories">Categories</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#offers">Offers</a></li>
-        </ul>
+            <div class="logo">
+                Crave<span>House.</span>
+            </div>
 
-        <button class="cart-btn">
-            🛒 Cart (0)
-        </button>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#offers">Offers</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+            </ul>
 
-    </nav>
+            <a href="#menu" class="nav-btn">Order Now</a>
+
+        </nav>
+    </header>
 
 
-    <!-- HERO SECTION -->
-    <section class="hero">
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
 
         <div class="hero-content">
 
+            <div class="small-title">
+                Fresh • Fast • Delicious
+            </div>
+
             <h1>
-                Shop Smart.<br>
-                Shop <span>Green.</span>
+                Good Food.<br>
+                <span>Good Mood.</span>
             </h1>
 
             <p>
-                Discover amazing products at the best prices.
-                Simple shopping, fast delivery and a better
-                online shopping experience.
+                Discover delicious meals prepared with fresh ingredients
+                and delivered straight to your doorstep. Your next favourite
+                meal is just one click away.
             </p>
 
-            <a href="#products" class="shop-btn">
-                Shop Now →
-            </a>
+            <div class="hero-buttons">
+                <a href="#menu" class="primary-btn">
+                    Explore Menu
+                </a>
 
-        </div>
+                <a href="#offers" class="secondary-btn">
+                    View Offers
+                </a>
+            </div>
 
-        <div class="hero-image">
-            🛍️
         </div>
 
     </section>
 
 
-    <!-- CATEGORIES -->
-    <section class="section" id="categories">
+    <!-- ================= CATEGORIES ================= -->
 
-        <div class="section-title">
+    <section class="categories" id="categories">
 
-            <h2>Shop By Category</h2>
+        <div class="section-heading">
+
+            <small>Explore</small>
+
+            <h2>What are you craving?</h2>
 
             <p>
-                Explore our popular categories
+                Choose from our delicious collection of meals,
+                snacks and beverages.
             </p>
 
         </div>
 
-        <div class="categories">
+
+        <div class="category-grid">
 
             <div class="category">
-                <div class="icon">👕</div>
-                <h3>Fashion</h3>
-                <p>Latest fashion products</p>
+                <div class="category-icon">🍔</div>
+                <h3>Burgers</h3>
             </div>
 
             <div class="category">
-                <div class="icon">📱</div>
-                <h3>Electronics</h3>
-                <p>Smart gadgets & devices</p>
+                <div class="category-icon">🍕</div>
+                <h3>Pizza</h3>
             </div>
 
             <div class="category">
-                <div class="icon">👟</div>
-                <h3>Footwear</h3>
-                <p>Trendy shoes & sneakers</p>
+                <div class="category-icon">🍝</div>
+                <h3>Pasta</h3>
             </div>
 
             <div class="category">
-                <div class="icon">🏠</div>
-                <h3>Home</h3>
-                <p>Products for your home</p>
+                <div class="category-icon">🍗</div>
+                <h3>Chicken</h3>
+            </div>
+
+            <div class="category">
+                <div class="category-icon">🥗</div>
+                <h3>Healthy</h3>
+            </div>
+
+            <div class="category">
+                <div class="category-icon">🍰</div>
+                <h3>Desserts</h3>
             </div>
 
         </div>
@@ -438,40 +826,58 @@
     </section>
 
 
-    <!-- PRODUCTS -->
-    <section class="section" id="products">
+    <!-- ================= POPULAR FOOD ================= -->
 
-        <div class="section-title">
+    <section class="popular" id="menu">
 
-            <h2>Popular Products</h2>
+        <div class="section-heading">
+
+            <small>Our Menu</small>
+
+            <h2>Popular Dishes</h2>
 
             <p>
-                Our best-selling products
+                Hand-picked favourites loved by our customers.
             </p>
 
         </div>
 
-        <div class="products">
 
-            <div class="product-card">
+        <div class="food-grid">
 
-                <div class="product-image">
-                    👟
+
+            <!-- FOOD 1 -->
+
+            <div class="food-card">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=85"
+                        alt="Classic Burger">
+
+                    <span class="badge">Popular</span>
+
                 </div>
 
-                <div class="product-info">
+                <div class="food-info">
 
-                    <h3>Running Shoes</h3>
+                    <h3>Classic Beef Burger</h3>
 
                     <p>
-                        Comfortable sports shoes
+                        Juicy beef patty, cheese, lettuce and
+                        our signature sauce.
                     </p>
 
-                    <div class="product-bottom">
+                    <div class="rating">
+                        ★★★★★ &nbsp; 4.9
+                    </div>
 
-                        <span class="price">
-                            ₹1,499
-                        </span>
+                    <div class="food-bottom">
+
+                        <div class="price">
+                            ₹249
+                        </div>
 
                         <button class="add-btn">
                             + Add
@@ -484,25 +890,38 @@
             </div>
 
 
-            <div class="product-card">
+            <!-- FOOD 2 -->
 
-                <div class="product-image">
-                    🎧
+            <div class="food-card">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=85"
+                        alt="Pizza">
+
+                    <span class="badge">Best Seller</span>
+
                 </div>
 
-                <div class="product-info">
+                <div class="food-info">
 
-                    <h3>Wireless Headphones</h3>
+                    <h3>Italian Cheese Pizza</h3>
 
                     <p>
-                        Premium sound experience
+                        Crispy crust topped with rich cheese,
+                        tomato and fresh herbs.
                     </p>
 
-                    <div class="product-bottom">
+                    <div class="rating">
+                        ★★★★★ &nbsp; 4.8
+                    </div>
 
-                        <span class="price">
-                            ₹2,299
-                        </span>
+                    <div class="food-bottom">
+
+                        <div class="price">
+                            ₹329
+                        </div>
 
                         <button class="add-btn">
                             + Add
@@ -515,25 +934,38 @@
             </div>
 
 
-            <div class="product-card">
+            <!-- FOOD 3 -->
 
-                <div class="product-image">
-                    ⌚
+            <div class="food-card">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85"
+                        alt="Healthy Bowl">
+
+                    <span class="badge">Healthy</span>
+
                 </div>
 
-                <div class="product-info">
+                <div class="food-info">
 
-                    <h3>Smart Watch</h3>
+                    <h3>Fresh Buddha Bowl</h3>
 
                     <p>
-                        Smart fitness watch
+                        Fresh vegetables, avocado, grains and
+                        homemade dressing.
                     </p>
 
-                    <div class="product-bottom">
+                    <div class="rating">
+                        ★★★★★ &nbsp; 4.7
+                    </div>
 
-                        <span class="price">
-                            ₹1,999
-                        </span>
+                    <div class="food-bottom">
+
+                        <div class="price">
+                            ₹289
+                        </div>
 
                         <button class="add-btn">
                             + Add
@@ -546,25 +978,38 @@
             </div>
 
 
-            <div class="product-card">
+            <!-- FOOD 4 -->
 
-                <div class="product-image">
-                    🎒
+            <div class="food-card">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=700&q=85"
+                        alt="Chicken">
+
+                    <span class="badge">Chef's Pick</span>
+
                 </div>
 
-                <div class="product-info">
+                <div class="food-info">
 
-                    <h3>Travel Backpack</h3>
+                    <h3>Spicy Chicken Wings</h3>
 
                     <p>
-                        Stylish and durable bag
+                        Crispy chicken wings tossed in our
+                        signature spicy sauce.
                     </p>
 
-                    <div class="product-bottom">
+                    <div class="rating">
+                        ★★★★★ &nbsp; 4.9
+                    </div>
 
-                        <span class="price">
-                            ₹999
-                        </span>
+                    <div class="food-bottom">
+
+                        <div class="price">
+                            ₹299
+                        </div>
 
                         <button class="add-btn">
                             + Add
@@ -581,36 +1026,307 @@
     </section>
 
 
-    <!-- OFFER -->
+    <!-- ================= OFFER ================= -->
+
     <section class="offer" id="offers">
 
-        <h2>🔥 Special Offer</h2>
+        <div class="offer-box">
 
-        <p>
-            Get up to 40% OFF on selected products!
-        </p>
+            <div class="offer-content">
 
-        <button class="offer-btn">
-            View Offers
-        </button>
+                <small>LIMITED TIME OFFER</small>
+
+                <h2>
+                    Get 30% Off<br>
+                    Your First Order
+                </h2>
+
+                <p>
+                    New to CraveHouse? Enjoy an exclusive discount
+                    on your first delicious order.
+                </p>
+
+                <a href="#menu" class="primary-btn">
+                    Order Now
+                </a>
+
+            </div>
+
+        </div>
 
     </section>
 
 
-    <!-- FOOTER -->
+    <!-- ================= WHY US ================= -->
+
+    <section class="why-us">
+
+        <div class="section-heading">
+
+            <small>Why CraveHouse?</small>
+
+            <h2>Made For Food Lovers</h2>
+
+            <p>
+                We focus on quality, speed and a great food experience.
+            </p>
+
+        </div>
+
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    01 — QUALITY
+                </div>
+
+                <h3>Fresh Ingredients</h3>
+
+                <p>
+                    We use fresh and carefully selected ingredients
+                    to make every meal delicious.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    02 — DELIVERY
+                </div>
+
+                <h3>Fast Delivery</h3>
+
+                <p>
+                    Your food reaches your doorstep quickly while
+                    maintaining freshness and quality.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    03 — EXPERIENCE
+                </div>
+
+                <h3>Easy Ordering</h3>
+
+                <p>
+                    Browse, choose and order your favourite food
+                    with a simple and smooth experience.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= REVIEWS ================= -->
+
+    <section class="reviews" id="reviews">
+
+        <div class="section-heading">
+
+            <small>Customer Love</small>
+
+            <h2>What Our Customers Say</h2>
+
+        </div>
+
+
+        <div class="review-grid">
+
+
+            <div class="review">
+
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "The food was absolutely delicious. The burger
+                    was fresh, hot and perfectly cooked. Definitely
+                    ordering again!"
+                </p>
+
+                <div class="review-user">
+
+                    <div class="avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <h4>Arun Kumar</h4>
+                        <span>Verified Customer</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="review">
+
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Very clean website and super easy to order.
+                    Delivery was quick and the food arrived hot."
+                </p>
+
+                <div class="review-user">
+
+                    <div class="avatar">
+                        S
+                    </div>
+
+                    <div>
+                        <h4>Sneha R</h4>
+                        <span>Verified Customer</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="review">
+
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Loved the variety of dishes. The pizza was
+                    amazing and the offer made the order even better."
+                </p>
+
+                <div class="review-user">
+
+                    <div class="avatar">
+                        K
+                    </div>
+
+                    <div>
+                        <h4>Karthik M</h4>
+                        <span>Verified Customer</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NEWSLETTER ================= -->
+
+    <section class="newsletter">
+
+        <h2>Get Delicious Updates</h2>
+
+        <p>
+            Subscribe and receive exclusive offers,
+            new dishes and special discounts.
+        </p>
+
+        <div class="subscribe">
+
+            <input
+                type="email"
+                placeholder="Enter your email address">
+
+            <button>
+                Subscribe
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
     <footer>
 
-        <h2>GreenCart</h2>
+        <div class="footer-grid">
 
-        <p>
-            Your simple and smart online shopping destination.
-        </p>
+            <div>
 
-        <p>
-            © 2026 GreenCart. All Rights Reserved.
-        </p>
+                <h3>
+                    Crave<span>House.</span>
+                </h3>
+
+                <p>
+                    A premium food ordering experience bringing
+                    delicious meals directly to your doorstep.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>Company</h3>
+
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Partner With Us</a></li>
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Support</h3>
+
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Contact</h3>
+
+                <ul>
+                    <li>📍 Chennai, India</li>
+                    <li>📞 +91 98765 43210</li>
+                    <li>✉️ hello@cravehouse.com</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 CraveHouse. All Rights Reserved.
+
+        </div>
 
     </footer>
 
 </body>
 </html>
+```
